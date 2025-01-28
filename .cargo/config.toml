@@ -1,0 +1,16 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+# uncomment this line if having a SWD debugger
+# runner = "probe-rs run --chip RP235x --speed 12000 --protocol swd"
+
+# OR just put the pico into the USB loader if I dont have:
+runner = "picotool load -x -t elf"
+
+[build]
+target = "thumbv8m.main-none-eabihf"	# hf = hard float, eabihf = extended ABI hard float
+
+[env]
+DEFMT_LOG = "debug"
+
+[unstable]
+build-std = ["core"]
+build-std-features = ["panic_immediate_abort"]
